@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kn0tzer</title>
+    <link rel="icon" type="image/x-icon" href="https://github.com/Kn0tzer/kn0tzer.github.io/raw/refs/heads/main/Logo.webp">
+    <style>
+        body {
+            font-family: "Inter", sans-serif;
+            margin: 0;
+            margin-bottom: 70px;
+            background-color: #1c1c1c;
+            color: #EEEEEE;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-image: url('https://github.com/Kn0tzer/kn0tzer.github.io/raw/refs/heads/main/Background.webp');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center center;
+            background-repeat: no-repeat;
+        }
+
+        header {
+            text-align: center;
+            margin-top: 200px;
+        }
+        header h1 {
+            font-size: 4em;
+            margin-top: 0px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        header h2 {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-top: 0;
+        }
+
+        .who-am-i {
+            background-color: rgba(45, 45, 45, 0.4);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            width: 80%;
+            max-width: 800px;
+            border-radius: 10px;
+            margin-top: 40px;
+            box-shadow: 0 7px 6px rgba(0, 0, 0, 0.5);
+            text-align: center;
+        }
+        .who-am-i h2 {
+            font-size: 2em;
+            margin-bottom: 10px;
+            margin-top: 0;
+        }
+        .who-am-i p {
+            font-size: 1.1em;
+            color: #cccccc;
+            line-height: 1.5em;
+        }
+
+        input[type="text"] {
+            color: #cccccc;
+            font-size: 100%;
+        }
+        input[type="text"]::placeholder {
+            color: #cccccc;
+            font-size: 100%;
+        }
+
+        button {
+            background-color: rgba(45, 45, 45, 0.4);
+            backdrop-filter: blur(10px);
+            padding: 5px;
+            width: 50px;
+            border-radius: 3px;
+            box-shadow: 0 7px 6px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            color: #cccccc;
+            font-size: 100%;
+        }
+        button:hover {
+            background-color: rgba(45, 45, 45, 0.6);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1 style="background: linear-gradient(0deg, rgb(250, 95, 85) 0%, rgb(72, 52, 117) 50%, rgb(40, 48, 164) 100%);
+           text-shadow: 0 0 25px rgba(72, 52, 117, 0.6), 0 0 5px rgba(250, 95, 85, 0.6);
+           background-clip:text;
+           color: transparent;
+           -webkit-background-clip: text;
+           -webkit-text-fill-color: transparent;
+           -webkit-text-stroke: 1px #CCCCCC;">
+           
+            Add to Homescreen
+        </h1>
+        <div class="input-container" style="margin-top: 100px;">
+            <input type="text" id="urlInput" placeholder="Enter URL" style="
+            background-color: rgba(45, 45, 45, 0.4);
+            backdrop-filter: blur(10px);
+            padding: 5px;
+            width: 300px;
+            border-radius: 3px;
+            box-shadow: 0 7px 6px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            color: #cccccc;
+            font-size: 100%;"/>
+            <button id="redirectButton">Go</button>
+        </div>
+        <script>
+            const baseUrl = `${window.location.origin}`;
+    
+            function redirectToEmbed() {
+                let urlInput = document.getElementById("urlInput").value.trim();
+                if (urlInput) {
+                    // If url doesn't start with https then add it
+                    if (!/^https?:\/\//i.test(urlInput)) {
+                        urlInput = `https://${urlInput}`;
+                    }
+                    window.location.href = `${baseUrl}/add/embed/?=${encodeURIComponent(urlInput)}`;
+                } else {
+                    alert("No URL entered");
+                }
+            }
+
+            document.getElementById("urlInput").addEventListener("keydown", function(event) {
+                if (event.key === "Enter") {
+                    redirectToEmbed();
+                }
+            });
+
+            document.getElementById("redirectButton").addEventListener("click", redirectToEmbed);
+        </script>
+    </header>
+    <section class="who-am-i">
+        <h2>What is this?</h2>
+        <p>
+            Enter a URL into the text box above and press embed. Then, on any iOS device the website can be added to your homescreen. It will open in fullscreen as if it's an app, instead of opening Safari like normal.<br><br>
+            Some websites may show a blank white screen. Rarely, searching something like "iframe example.com refused to connect" will give an alternate URL that works (For example google.com doesn't work but google.com/search?igpu=1 does). Otherwise, this limitation can't be avoided no matter what. Sorry.
+        </p>
+</body>
+</html>
