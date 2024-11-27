@@ -121,6 +121,7 @@
                     if (!/^https?:\/\//i.test(urlInput)) {
                         urlInput = `https://${urlInput}`;
                     }
+                    // **This might need to be modified depending on how it's being hosted**
                     window.location.href = `${baseUrl}/add/embed/?=${encodeURIComponent(urlInput)}`;
                 } else {
                     alert("No URL entered");
